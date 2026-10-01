@@ -1,6 +1,6 @@
 import pytest
 
-from my_project import MyClass
+from italian_card_games import MyClass
 
 
 # can test using classes, name must begin with `Test`
