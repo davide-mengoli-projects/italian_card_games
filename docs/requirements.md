@@ -7,10 +7,10 @@ IDs are stable. Tests and pull requests reference them (e.g. `FR-13`). A require
 ## 1. Scope and actors
 
 - **Actor:** the *player*. There is no admin or spectator role.
-- **Identity:** a player joins with a nickname. There are no accounts and no authentication.
+- **Identity:** a player registers a nickname. Nicknames are unique and reserved: nobody else can use a registered one. There are no accounts with passwords or email, and no check that a returning player owns their nickname: anyone who enters a registered nickname can use it.
 - **In scope:** the game engine, at least two games (Matazza, Briscola), rule-based and LLM-based bots, offline and online play, match history and statistics.
 - **Stretch:** a logic-programming or constraint-solver bot (Prolog or Z3).
-- **Out of scope:** accounts, spectators, expense splitting, real-money features.
+- **Out of scope:** accounts with passwords or email, spectators, expense splitting, real-money features.
 
 ## 2. Functional requirements
 
@@ -63,7 +63,7 @@ IDs are stable. Tests and pull requests reference them (e.g. `FR-13`). A require
 
 | ID | Requirement | Done when |
 |---|---|---|
-| FR-26 | A player joins by entering a nickname. | A player can reach the lobby with only a nickname. |
+| FR-26 | A player registers a nickname before playing. Nicknames are unique: a nickname already registered is rejected. | Registering a new nickname lets the player reach the lobby; registering a taken one fails with an explicit error. |
 | FR-27 | A player can create a lobby and share a code. Others join with that code. | Two clients meet in one lobby using a code. |
 | FR-28 | The lobby creator starts the match. Empty seats are filled with bots. | A lobby with one human starts a full 4-player match. |
 | FR-29 | All players in a match receive match updates in real time. | An action by one client is seen by the others without refreshing. |
@@ -104,7 +104,7 @@ IDs are stable. Tests and pull requests reference them (e.g. `FR-13`). A require
 
 ## 4. User stories
 
-- As a player, I want to join with just a nickname, so that I can start playing quickly.
+- As a player, I want to register a unique nickname that nobody else can use, so that my history and statistics are mine.
 - As a player, I want to play a game against three bots, so that I can play when no one else is available.
 - As a player, I want to create a lobby and share a code, so that I can play with my friends.
 - As a lobby creator, I want empty seats filled with bots, so that I can start with fewer than four humans.
