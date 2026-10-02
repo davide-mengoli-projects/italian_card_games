@@ -7,7 +7,7 @@ IDs are stable. Tests and pull requests reference them (e.g. `FR-13`). A require
 ## 1. Scope and actors
 
 - **Actor:** the *player*. There is no admin or spectator role.
-- **Identity:** a player registers a nickname. Nicknames are unique and reserved: nobody else can use a registered one. There are no accounts with passwords or email.
+- **Identity:** a player registers a nickname. Nicknames are unique and reserved: nobody else can use a registered one. There are no accounts with passwords or email, and no check that a returning player owns their nickname: anyone who enters a registered nickname can use it.
 - **In scope:** the game engine, at least two games (Matazza, Briscola), rule-based and LLM-based bots, offline and online play, match history and statistics.
 - **Stretch:** a logic-programming or constraint-solver bot (Prolog or Z3).
 - **Out of scope:** accounts with passwords or email, spectators, expense splitting, real-money features.
@@ -117,5 +117,4 @@ IDs are stable. Tests and pull requests reference them (e.g. `FR-13`). A require
 
 ## 5. Open questions
 
-- **Returning players (FR-26):** without a password, how does a player prove a registered nickname is theirs when they come back? Options: a secret token kept in their browser, or anyone who knows the nickname can use it.
 - **Briscola (FR-20):** player count, team rules and scoring are to be defined at step 11.
