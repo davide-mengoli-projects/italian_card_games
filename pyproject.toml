@@ -4,14 +4,14 @@ packages = [
     { include = "italian_card_games" },
 ]
 version = "2.4.1"
-description = "A template for Python projects, using Poetry"
-authors = ["Giovanni Ciatto <giovanni.ciatto@unibo.it>"]
-license = "Apache 2.0"
+description = "Italian card games (e.g. Briscola, Scopa) with a clean, testable game engine"
+authors = ["Davide Mengoli <davide.mengoli4@studio.unibo.it>"]
+license = "Apache-2.0"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 # update the Python versions in .github/workflows/check.yml if you change this
-python = ">= 3.9.0 < 4.0.0"
+python = ">= 3.11.0 < 4.0.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = "^7.4.0"
