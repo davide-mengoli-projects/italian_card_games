@@ -34,9 +34,10 @@ class TestMove:
         assert move.card == EIGHT_OF_SPADES
 
     def test_is_equal_by_value(self):
-        assert Move(SeatIndex(1), EIGHT_OF_SPADES) == Move(SeatIndex(1), EIGHT_OF_SPADES)
-        assert Move(SeatIndex(1), EIGHT_OF_SPADES) != Move(SeatIndex(2), EIGHT_OF_SPADES)
-        assert Move(SeatIndex(1), EIGHT_OF_SPADES) != Move(SeatIndex(1), ACE_OF_COINS)
+        move = Move(SeatIndex(1), EIGHT_OF_SPADES)
+        assert move == Move(SeatIndex(1), EIGHT_OF_SPADES)
+        assert move != Move(SeatIndex(2), EIGHT_OF_SPADES)
+        assert move != Move(SeatIndex(1), ACE_OF_COINS)
 
     def test_is_immutable(self):
         move = Move(SeatIndex(1), EIGHT_OF_SPADES)
