@@ -96,6 +96,9 @@ Design choices:
 
 - **Immutable state, events as output.** A move produces a new state and a list of events. This gives deterministic replay (NFR-04), lets a bot try moves without side effects, and the same events feed WebSockets and History.
 - **Per-game rules behind `Game`.** `Match` delegates every game-specific decision to its `Game`. Adding Briscola does not change `Match` (FR-01).
+- **Ports are `typing.Protocol`s.** `Game` and `AIStrategy` are matched by shape, so adapters (LLM, Prolog) do not inherit from an engine class. Mypy checks the signatures (NFR-01).
+- **Legal moves come from the player view.** `Game.legal_moves(view)` uses the same `PlayerView` a bot receives: the seat, its hand and the cards on the table. That is enough for follow-suit rules, and it guarantees a bot and the legality check see the same information (FR-04, FR-06).
+- **`Game` grows with the rules.** Only `player_count` and `legal_moves` exist so far. `trick_winner`, `score_round` and `outcomes` are added in steps 7 to 10, each with its tests.
 
 ### 3.2 Lobby
 
@@ -179,7 +182,7 @@ classDiagram
     class Game {
         <<interface>>
         +player_count() int
-        +legal_moves(round, seat) list~Move~
+        +legal_moves(view) list~Move~
         +trick_winner(trick) SeatIndex
         +score_round(round) list~RoundScore~
         +outcomes(match) list~Outcome~
@@ -221,6 +224,7 @@ classDiagram
     MatazzaRules ..> TrickResolver
     MatazzaRules ..> StandingsCalculator
     Game ..> RoundScore
+    Game ..> PlayerView
     Match ..> PlayerView : builds
     Match ..> DomainEvent : emits
     AIStrategy ..> PlayerView
