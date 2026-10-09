@@ -60,11 +60,11 @@ class TestGame:
     def test_a_class_missing_a_method_is_not_a_game(self):
         assert not isinstance(NotAGame(), Game)
 
-    def test_reports_how_many_seats_it_needs(self):
+    def test_reports_how_many_seats_it_needs(self) -> None:
         game: Game = AnyCardGame()
         assert game.player_count() == 2
 
-    def test_legal_moves_are_asked_from_what_a_seat_can_see(self):
+    def test_legal_moves_are_asked_from_what_a_seat_can_see(self) -> None:
         game: Game = AnyCardGame()
         moves = game.legal_moves(a_view())
         assert moves == (
@@ -81,11 +81,11 @@ class TestAIStrategy:
     def test_a_class_without_choose_move_is_not_a_strategy(self):
         assert not isinstance(NotAStrategy(), AIStrategy)
 
-    def test_chooses_a_move_from_a_player_view(self):
+    def test_chooses_a_move_from_a_player_view(self) -> None:
         bot: AIStrategy = FirstLegalMoveBot(AnyCardGame())
         assert bot.choose_move(a_view()) == Move(SeatIndex(0), EIGHT_OF_SPADES)
 
-    def test_two_strategies_are_interchangeable(self):
+    def test_two_strategies_are_interchangeable(self) -> None:
         game = AnyCardGame()
         view = a_view()
         strategies: list[AIStrategy] = [FirstLegalMoveBot(game), LastLegalMoveBot(game)]
